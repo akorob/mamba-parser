@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7269493f3ac54c2bb2810b2ba2287641" Name="Diagram1">
+        <EntityTypeShape EntityType="parserModel.photo" Width="1.5" PointX="8" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="parserModel.info" Width="1.5" PointX="1.625" PointY="2.125" />
+        <EntityTypeShape EntityType="parserModel.interes" Width="1.5" PointX="8" PointY="3.625" />
+        <EntityTypeShape EntityType="parserModel.detailedinfo" Width="1.5" PointX="3.875" PointY="10.25" />
+        <AssociationConnector Association="parserModel.fk_Detailed_Info" />
+        <AssociationConnector Association="parserModel.fk_Intereses_DetailedInfos1" />
+        <AssociationConnector Association="parserModel.fk_Photos_DetailedInfos1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

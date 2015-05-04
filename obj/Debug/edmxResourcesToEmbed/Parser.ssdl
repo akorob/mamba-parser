@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="parser.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="detailed">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="result_id" Type="int" Nullable="false" />
+    <Property Name="horscop" Type="varchar" MaxLength="45" />
+    <Property Name="goal" Type="varchar" MaxLength="255" />
+    <Property Name="height" Type="int" />
+    <Property Name="weight" Type="int" />
+    <Property Name="build" Type="varchar" MaxLength="45" />
+    <Property Name="ethnity" Type="varchar" MaxLength="45" />
+    <Property Name="relationship" Type="varchar" MaxLength="45" />
+    <Property Name="education" Type="varchar" MaxLength="45" />
+    <Property Name="sex_orient" Type="varchar" MaxLength="45" />
+    <Property Name="smoker" Type="varchar" MaxLength="45" />
+    <Property Name="drink" Type="varchar" MaxLength="45" />
+    <Property Name="kids" Type="varchar" MaxLength="45" />
+    <Property Name="income" Type="varchar" MaxLength="45" />
+    <Property Name="accomodation" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="result">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="photos_quantity" Type="int" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="searchfor" Type="varchar" MaxLength="100" />
+    <Property Name="sf_startage" Type="int" />
+    <Property Name="sf_endage" Type="int" />
+    <Property Name="page_id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="link" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_detailed_result">
+    <End Role="result" Type="Self.result" Multiplicity="1" />
+    <End Role="detailed" Type="Self.detailed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="result">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="detailed">
+        <PropertyRef Name="result_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="parserStoreContainer">
+    <EntitySet Name="detailed" EntityType="Self.detailed" Schema="parser" store:Type="Tables" />
+    <EntitySet Name="result" EntityType="Self.result" Schema="parser" store:Type="Tables" />
+    <AssociationSet Name="fk_detailed_result" Association="Self.fk_detailed_result">
+      <End Role="result" EntitySet="result" />
+      <End Role="detailed" EntitySet="detailed" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

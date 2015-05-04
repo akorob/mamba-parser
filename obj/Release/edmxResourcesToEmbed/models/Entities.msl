@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="parserModelStoreContainer" CdmEntityContainer="Entities2">
+    <EntitySetMapping Name="photos">
+      <EntityTypeMapping TypeName="parserModel.photo">
+        <MappingFragment StoreEntitySet="photos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="infos">
+      <EntityTypeMapping TypeName="parserModel.info">
+        <MappingFragment StoreEntitySet="infos">
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="SfEndAge" ColumnName="SfEndAge" />
+          <ScalarProperty Name="SfStartAge" ColumnName="SfStartAge" />
+          <ScalarProperty Name="SearchFor" ColumnName="SearchFor" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="PhQuantity" ColumnName="PhQuantity" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="intereses">
+      <EntityTypeMapping TypeName="parserModel.interes">
+        <MappingFragment StoreEntitySet="intereses">
+          <ScalarProperty Name="Interes1" ColumnName="Interes" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detailedinfos">
+      <EntityTypeMapping TypeName="parserModel.detailedinfo">
+        <MappingFragment StoreEntitySet="detailedinfos">
+          <ScalarProperty Name="Offline" ColumnName="Offline" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SfEndAge" ColumnName="SfEndAge" />
+          <ScalarProperty Name="SfStartAge" ColumnName="SfStartAge" />
+          <ScalarProperty Name="SearchFor" ColumnName="SearchFor" />
+          <ScalarProperty Name="LinkMail" ColumnName="LinkMail" />
+          <ScalarProperty Name="LinkMamba" ColumnName="LinkMamba" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Accomodation" ColumnName="Accomodation" />
+          <ScalarProperty Name="Income" ColumnName="Income" />
+          <ScalarProperty Name="Kids" ColumnName="Kids" />
+          <ScalarProperty Name="Drink" ColumnName="Drink" />
+          <ScalarProperty Name="Smoker" ColumnName="Smoker" />
+          <ScalarProperty Name="SexOrient" ColumnName="SexOrient" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+          <ScalarProperty Name="Ethnity" ColumnName="Ethnity" />
+          <ScalarProperty Name="Build" ColumnName="Build" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Goal" ColumnName="Goal" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Horscop" ColumnName="Horscop" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="fk_Detailed_Info" TypeName="parserModel.fk_Detailed_Info" StoreEntitySet="detailedinfos">
+      <EndProperty Name="detailedinfo">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="info">
+        <ScalarProperty Name="UserId" ColumnName="Info_UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="fk_Intereses_DetailedInfos1" TypeName="parserModel.fk_Intereses_DetailedInfos1" StoreEntitySet="intereses">
+      <EndProperty Name="interes">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="detailedinfo">
+        <ScalarProperty Name="Id" ColumnName="DetailedInfos_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="fk_Photos_DetailedInfos1" TypeName="parserModel.fk_Photos_DetailedInfos1" StoreEntitySet="photos">
+      <EndProperty Name="photo">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <EndProperty Name="detailedinfo">
+        <ScalarProperty Name="Id" ColumnName="DetailedInfos_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="parser" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="detailed">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="result_id" Type="Int32" Nullable="false" />
+    <Property Name="horscop" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="goal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="height" Type="Int32" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="build" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="ethnity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="relationship" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="education" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="sex_orient" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="smoker" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="drink" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="kids" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="income" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="accomodation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="result" Relationship="Self.fk_detailed_result" FromRole="detailed" ToRole="result" />
+  </EntityType>
+  <EntityType Name="result">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="photos_quantity" Type="Int32" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="searchfor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sf_startage" Type="Int32" />
+    <Property Name="sf_endage" Type="Int32" />
+    <Property Name="page_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="detailed" Relationship="Self.fk_detailed_result" FromRole="result" ToRole="detailed" />
+  </EntityType>
+  <Association Name="fk_detailed_result">
+    <End Role="result" Type="Self.result" Multiplicity="1" />
+    <End Role="detailed" Type="Self.detailed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="result">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="detailed">
+        <PropertyRef Name="result_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="detailed" EntityType="Self.detailed" />
+    <EntitySet Name="result" EntityType="Self.result" />
+    <AssociationSet Name="fk_detailed_result" Association="Self.fk_detailed_result">
+      <End Role="result" EntitySet="result" />
+      <End Role="detailed" EntitySet="detailed" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

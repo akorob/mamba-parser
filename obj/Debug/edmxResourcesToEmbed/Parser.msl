@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="parserStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="detailed">
+      <EntityTypeMapping TypeName="parser.detailed">
+        <MappingFragment StoreEntitySet="detailed">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="result_id" ColumnName="result_id" />
+          <ScalarProperty Name="horscop" ColumnName="horscop" />
+          <ScalarProperty Name="goal" ColumnName="goal" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="build" ColumnName="build" />
+          <ScalarProperty Name="ethnity" ColumnName="ethnity" />
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+          <ScalarProperty Name="education" ColumnName="education" />
+          <ScalarProperty Name="sex_orient" ColumnName="sex_orient" />
+          <ScalarProperty Name="smoker" ColumnName="smoker" />
+          <ScalarProperty Name="drink" ColumnName="drink" />
+          <ScalarProperty Name="kids" ColumnName="kids" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="accomodation" ColumnName="accomodation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="result">
+      <EntityTypeMapping TypeName="parser.result">
+        <MappingFragment StoreEntitySet="result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="photos_quantity" ColumnName="photos_quantity" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="searchfor" ColumnName="searchfor" />
+          <ScalarProperty Name="sf_startage" ColumnName="sf_startage" />
+          <ScalarProperty Name="sf_endage" ColumnName="sf_endage" />
+          <ScalarProperty Name="page_id" ColumnName="page_id" />
+          <ScalarProperty Name="link" ColumnName="link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
