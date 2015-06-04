@@ -25,9 +25,7 @@ namespace parser.models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<photo> photos { get; set; }
         public virtual DbSet<info> infos { get; set; }
-        public virtual DbSet<interes> intereses { get; set; }
         public virtual DbSet<detailedinfo> detailedinfos { get; set; }
     }
 }

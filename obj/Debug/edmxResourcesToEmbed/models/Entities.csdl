@@ -1,30 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="parserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="photo">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Link" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="Path" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="detailedinfo" Relationship="parserModel.fk_Photos_DetailedInfos1" FromRole="photo" ToRole="detailedinfo" />
-  </EntityType>
   <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="photos" EntityType="Self.photo" />
     <EntitySet Name="infos" EntityType="parserModel.info" />
-    <EntitySet Name="intereses" EntityType="parserModel.interes" />
     <EntitySet Name="detailedinfos" EntityType="parserModel.detailedinfo" />
     <AssociationSet Name="fk_Detailed_Info" Association="parserModel.fk_Detailed_Info">
       <End Role="info" EntitySet="infos" />
       <End Role="detailedinfo" EntitySet="detailedinfos" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Intereses_DetailedInfos1" Association="parserModel.fk_Intereses_DetailedInfos1">
-      <End Role="detailedinfo" EntitySet="detailedinfos" />
-      <End Role="interes" EntitySet="intereses" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Photos_DetailedInfos1" Association="parserModel.fk_Photos_DetailedInfos1">
-      <End Role="detailedinfo" EntitySet="detailedinfos" />
-      <End Role="photo" EntitySet="photos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="info">
@@ -43,14 +24,6 @@
     <Property Name="Date" Type="DateTime" />
     <Property Name="Enable" Type="Boolean" />
     <NavigationProperty Name="detailedinfos" Relationship="parserModel.fk_Detailed_Info" FromRole="info" ToRole="detailedinfo" />
-  </EntityType>
-  <EntityType Name="interes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="Interes1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="detailedinfo" Relationship="parserModel.fk_Intereses_DetailedInfos1" FromRole="interes" ToRole="detailedinfo" />
   </EntityType>
   <EntityType Name="detailedinfo">
     <Key>
@@ -84,19 +57,9 @@
     <Property Name="Actual" Type="Boolean" />
     <Property Name="Offline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="info" Relationship="parserModel.fk_Detailed_Info" FromRole="detailedinfo" ToRole="info" />
-    <NavigationProperty Name="intereses" Relationship="parserModel.fk_Intereses_DetailedInfos1" FromRole="detailedinfo" ToRole="interes" />
-    <NavigationProperty Name="photos" Relationship="parserModel.fk_Photos_DetailedInfos1" FromRole="detailedinfo" ToRole="photo" />
   </EntityType>
   <Association Name="fk_Detailed_Info">
     <End Type="parserModel.info" Role="info" Multiplicity="1" />
     <End Type="parserModel.detailedinfo" Role="detailedinfo" Multiplicity="*" />
-  </Association>
-  <Association Name="fk_Intereses_DetailedInfos1">
-    <End Type="parserModel.detailedinfo" Role="detailedinfo" Multiplicity="1" />
-    <End Type="parserModel.interes" Role="interes" Multiplicity="*" />
-  </Association>
-  <Association Name="fk_Photos_DetailedInfos1">
-    <End Type="parserModel.detailedinfo" Role="detailedinfo" Multiplicity="1" />
-    <End Type="parserModel.photo" Role="photo" Multiplicity="*" />
   </Association>
 </Schema>

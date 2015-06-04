@@ -14,12 +14,6 @@ namespace parser.models
     
     public partial class detailedinfo
     {
-        public detailedinfo()
-        {
-            this.intereses = new HashSet<interes>();
-            this.photos = new HashSet<photo>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Horscop { get; set; }
@@ -49,7 +43,5 @@ namespace parser.models
         public string Offline { get; set; }
     
         public virtual info info { get; set; }
-        public virtual ICollection<interes> intereses { get; set; }
-        public virtual ICollection<photo> photos { get; set; }
     }
 }

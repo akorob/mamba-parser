@@ -49,23 +49,6 @@
     <Property Name="Date" Type="datetime" Precision="0" />
     <Property Name="Enable" Type="bool" />
   </EntityType>
-  <EntityType Name="intereses">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Interes" Type="varchar" MaxLength="100" />
-    <Property Name="DetailedInfos_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="photos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Link" Type="varchar" MaxLength="300" />
-    <Property Name="Path" Type="varchar" MaxLength="300" />
-    <Property Name="DetailedInfos_Id" Type="int" Nullable="false" />
-  </EntityType>
   <Association Name="fk_Detailed_Info">
     <End Role="infos" Type="Self.infos" Multiplicity="1" />
     <End Role="detailedinfos" Type="Self.detailedinfos" Multiplicity="*" />
@@ -78,46 +61,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_Intereses_DetailedInfos1">
-    <End Role="detailedinfos" Type="Self.detailedinfos" Multiplicity="1" />
-    <End Role="intereses" Type="Self.intereses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="detailedinfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="intereses">
-        <PropertyRef Name="DetailedInfos_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_Photos_DetailedInfos1">
-    <End Role="detailedinfos" Type="Self.detailedinfos" Multiplicity="1" />
-    <End Role="photos" Type="Self.photos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="detailedinfos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="photos">
-        <PropertyRef Name="DetailedInfos_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="parserModelStoreContainer">
     <EntitySet Name="detailedinfos" EntityType="Self.detailedinfos" Schema="parser" store:Type="Tables" />
     <EntitySet Name="infos" EntityType="Self.infos" Schema="parser" store:Type="Tables" />
-    <EntitySet Name="intereses" EntityType="Self.intereses" Schema="parser" store:Type="Tables" />
-    <EntitySet Name="photos" EntityType="Self.photos" Schema="parser" store:Type="Tables" />
     <AssociationSet Name="fk_Detailed_Info" Association="Self.fk_Detailed_Info">
       <End Role="infos" EntitySet="infos" />
       <End Role="detailedinfos" EntitySet="detailedinfos" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Intereses_DetailedInfos1" Association="Self.fk_Intereses_DetailedInfos1">
-      <End Role="detailedinfos" EntitySet="detailedinfos" />
-      <End Role="intereses" EntitySet="intereses" />
-    </AssociationSet>
-    <AssociationSet Name="fk_Photos_DetailedInfos1" Association="Self.fk_Photos_DetailedInfos1">
-      <End Role="detailedinfos" EntitySet="detailedinfos" />
-      <End Role="photos" EntitySet="photos" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

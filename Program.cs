@@ -92,10 +92,10 @@ namespace parser
             Console.WriteLine("Detailed parsing starts " + DateTime.Now);
             string[] stoplist =
             {
-                "Россия, Севастополь", "Россия, Симферополь", "Россия, Керчь", "Россия, Красноперекопск",
+               /* "Россия, Севастополь", "Россия, Симферополь", "Россия, Керчь", "Россия, Красноперекопск",
                 "Россия, Ялта", "Россия, Евпатория", "Россия, Феодосия", "Россия, Армянск", "Россия, Алушта",
                 "Россия, Черноморское", "Россия, Джанкой",
-                "Россия, Саки", "Россия, Белогорск", "Россия, Судак"
+                "Россия, Саки", "Россия, Белогорск", "Россия, Судак"*/
             };
             var urlList = Db.infos.Where(c => c.Enable == true && !stoplist.Contains(c.Location)).Select(c => c.Link).ToList();
             var size = urlList.Count;
@@ -361,7 +361,7 @@ namespace parser
         static void SaveDetailedInfoToDb(detailedinfo dinfo)
         {
 
-            var max = (Db.detailedinfos.Any()) ?Db.detailedinfos.Select(c => c.Id).Max() : 0;
+            var max = (Db.detailedinfos.Any()) ? Db.detailedinfos.Select(c => c.Id).Max() : 0;
             var oldList = Db.detailedinfos.Where(c => c.info.UserId == dinfo.info.UserId).ToList();
             foreach (var entry in oldList)
             {

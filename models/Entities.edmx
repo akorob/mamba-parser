@@ -54,23 +54,6 @@
           <Property Name="Date" Type="datetime" Precision="0" />
           <Property Name="Enable" Type="bool" />
         </EntityType>
-        <EntityType Name="intereses">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Interes" Type="varchar" MaxLength="100" />
-          <Property Name="DetailedInfos_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="photos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Link" Type="varchar" MaxLength="300" />
-          <Property Name="Path" Type="varchar" MaxLength="300" />
-          <Property Name="DetailedInfos_Id" Type="int" Nullable="false" />
-        </EntityType>
         <Association Name="fk_Detailed_Info">
           <End Role="infos" Type="Self.infos" Multiplicity="1" />
           <End Role="detailedinfos" Type="Self.detailedinfos" Multiplicity="*" />
@@ -83,77 +66,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Intereses_DetailedInfos1">
-          <End Role="detailedinfos" Type="Self.detailedinfos" Multiplicity="1" />
-          <End Role="intereses" Type="Self.intereses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="detailedinfos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="intereses">
-              <PropertyRef Name="DetailedInfos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Photos_DetailedInfos1">
-          <End Role="detailedinfos" Type="Self.detailedinfos" Multiplicity="1" />
-          <End Role="photos" Type="Self.photos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="detailedinfos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="photos">
-              <PropertyRef Name="DetailedInfos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="parserModelStoreContainer">
           <EntitySet Name="detailedinfos" EntityType="Self.detailedinfos" Schema="parser" store:Type="Tables" />
           <EntitySet Name="infos" EntityType="Self.infos" Schema="parser" store:Type="Tables" />
-          <EntitySet Name="intereses" EntityType="Self.intereses" Schema="parser" store:Type="Tables" />
-          <EntitySet Name="photos" EntityType="Self.photos" Schema="parser" store:Type="Tables" />
           <AssociationSet Name="fk_Detailed_Info" Association="Self.fk_Detailed_Info">
             <End Role="infos" EntitySet="infos" />
             <End Role="detailedinfos" EntitySet="detailedinfos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Intereses_DetailedInfos1" Association="Self.fk_Intereses_DetailedInfos1">
-            <End Role="detailedinfos" EntitySet="detailedinfos" />
-            <End Role="intereses" EntitySet="intereses" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Photos_DetailedInfos1" Association="Self.fk_Photos_DetailedInfos1">
-            <End Role="detailedinfos" EntitySet="detailedinfos" />
-            <End Role="photos" EntitySet="photos" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="parserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="photo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Link" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Path" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="detailedinfo" Relationship="parserModel.fk_Photos_DetailedInfos1" FromRole="photo" ToRole="detailedinfo" />
-        </EntityType>
         <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="photos" EntityType="Self.photo" />
           <EntitySet Name="infos" EntityType="parserModel.info" />
-          <EntitySet Name="intereses" EntityType="parserModel.interes" />
           <EntitySet Name="detailedinfos" EntityType="parserModel.detailedinfo" />
           <AssociationSet Name="fk_Detailed_Info" Association="parserModel.fk_Detailed_Info">
             <End Role="info" EntitySet="infos" />
             <End Role="detailedinfo" EntitySet="detailedinfos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Intereses_DetailedInfos1" Association="parserModel.fk_Intereses_DetailedInfos1">
-            <End Role="detailedinfo" EntitySet="detailedinfos" />
-            <End Role="interes" EntitySet="intereses" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Photos_DetailedInfos1" Association="parserModel.fk_Photos_DetailedInfos1">
-            <End Role="detailedinfo" EntitySet="detailedinfos" />
-            <End Role="photo" EntitySet="photos" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="info">
@@ -172,14 +102,6 @@
           <Property Name="Date" Type="DateTime" />
           <Property Name="Enable" Type="Boolean" />
           <NavigationProperty Name="detailedinfos" Relationship="parserModel.fk_Detailed_Info" FromRole="info" ToRole="detailedinfo" />
-        </EntityType>
-        <EntityType Name="interes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Interes1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="detailedinfo" Relationship="parserModel.fk_Intereses_DetailedInfos1" FromRole="interes" ToRole="detailedinfo" />
         </EntityType>
         <EntityType Name="detailedinfo">
           <Key>
@@ -213,20 +135,10 @@
           <Property Name="Actual" Type="Boolean" />
           <Property Name="Offline" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="info" Relationship="parserModel.fk_Detailed_Info" FromRole="detailedinfo" ToRole="info" />
-          <NavigationProperty Name="intereses" Relationship="parserModel.fk_Intereses_DetailedInfos1" FromRole="detailedinfo" ToRole="interes" />
-          <NavigationProperty Name="photos" Relationship="parserModel.fk_Photos_DetailedInfos1" FromRole="detailedinfo" ToRole="photo" />
         </EntityType>
         <Association Name="fk_Detailed_Info">
           <End Type="parserModel.info" Role="info" Multiplicity="1" />
           <End Type="parserModel.detailedinfo" Role="detailedinfo" Multiplicity="*" />
-        </Association>
-        <Association Name="fk_Intereses_DetailedInfos1">
-          <End Type="parserModel.detailedinfo" Role="detailedinfo" Multiplicity="1" />
-          <End Type="parserModel.interes" Role="interes" Multiplicity="*" />
-        </Association>
-        <Association Name="fk_Photos_DetailedInfos1">
-          <End Type="parserModel.detailedinfo" Role="detailedinfo" Multiplicity="1" />
-          <End Type="parserModel.photo" Role="photo" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -234,15 +146,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="parserModelStoreContainer" CdmEntityContainer="Entities2">
-          <EntitySetMapping Name="photos">
-            <EntityTypeMapping TypeName="parserModel.photo">
-              <MappingFragment StoreEntitySet="photos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Path" ColumnName="Path" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="infos">
             <EntityTypeMapping TypeName="parserModel.info">
               <MappingFragment StoreEntitySet="infos">
@@ -257,14 +160,6 @@
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="intereses">
-            <EntityTypeMapping TypeName="parserModel.interes">
-              <MappingFragment StoreEntitySet="intereses">
-                <ScalarProperty Name="Interes1" ColumnName="Interes" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -307,22 +202,6 @@
             </EndProperty>
             <EndProperty Name="info">
               <ScalarProperty Name="UserId" ColumnName="Info_UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="fk_Intereses_DetailedInfos1" TypeName="parserModel.fk_Intereses_DetailedInfos1" StoreEntitySet="intereses">
-            <EndProperty Name="interes">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <EndProperty Name="detailedinfo">
-              <ScalarProperty Name="Id" ColumnName="DetailedInfos_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="fk_Photos_DetailedInfos1" TypeName="parserModel.fk_Photos_DetailedInfos1" StoreEntitySet="photos">
-            <EndProperty Name="photo">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <EndProperty Name="detailedinfo">
-              <ScalarProperty Name="Id" ColumnName="DetailedInfos_Id" />
             </EndProperty>
           </AssociationSetMapping>
           </EntityContainerMapping>

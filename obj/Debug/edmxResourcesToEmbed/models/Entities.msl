@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="parserModelStoreContainer" CdmEntityContainer="Entities2">
-    <EntitySetMapping Name="photos">
-      <EntityTypeMapping TypeName="parserModel.photo">
-        <MappingFragment StoreEntitySet="photos">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="Path" ColumnName="Path" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="infos">
       <EntityTypeMapping TypeName="parserModel.info">
         <MappingFragment StoreEntitySet="infos">
@@ -24,14 +15,6 @@
           <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="intereses">
-      <EntityTypeMapping TypeName="parserModel.interes">
-        <MappingFragment StoreEntitySet="intereses">
-          <ScalarProperty Name="Interes1" ColumnName="Interes" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -74,22 +57,6 @@
       </EndProperty>
       <EndProperty Name="info">
         <ScalarProperty Name="UserId" ColumnName="Info_UserId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="fk_Intereses_DetailedInfos1" TypeName="parserModel.fk_Intereses_DetailedInfos1" StoreEntitySet="intereses">
-      <EndProperty Name="interes">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-      <EndProperty Name="detailedinfo">
-        <ScalarProperty Name="Id" ColumnName="DetailedInfos_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="fk_Photos_DetailedInfos1" TypeName="parserModel.fk_Photos_DetailedInfos1" StoreEntitySet="photos">
-      <EndProperty Name="photo">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-      <EndProperty Name="detailedinfo">
-        <ScalarProperty Name="Id" ColumnName="DetailedInfos_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
